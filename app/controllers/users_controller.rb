@@ -87,7 +87,7 @@ class UsersController < ApplicationController
   RegisterResult = Struct.new(:ResultCode)
   def register
     @user = User.new()
-    @user.email = params[:EmailAddress]
+    @user.email = params[:emailaddress]
     @user.confirmation_code = rand(100..999)
     @user.token = SecureRandom.urlsafe_base64
 
@@ -103,10 +103,10 @@ class UsersController < ApplicationController
   
   ConfirmRegisterationCodeResult = Struct.new(:resultcode,:token)
   def confirmregistrationcode
-    user = User.find_by_email(params[:EmailAddress].downcase)  
+    user = User.find_by_email(params[:emailaddress].downcase)  
     
     respond_to do |format|
-      if user && user.confirmation_code.to_s() == params[:ConfirmationCode]
+      if user && user.confirmation_code.to_s() == params[:confirmationcode]
         format.json { render json: ConfirmRegisterationCodeResult.new(0,user.token), status: :created, location: @user }
       else
         format.json { render json: ConfirmRegisterationCodeResult.new(1,""), status: :unprocessable_entity }
