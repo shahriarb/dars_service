@@ -8,6 +8,7 @@ DarsService::Application.routes.draw do
   match '/confirmregistrationcode', to: 'users#confirmregistrationcode' 
 
   match '/getmyfile', to: 'file_handler#getmyfile'
+  match '/getfilepartial', to: 'file_handler#getfilepartial'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

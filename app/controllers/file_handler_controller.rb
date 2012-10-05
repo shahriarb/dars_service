@@ -14,4 +14,21 @@ class FileHandlerController < ApplicationController
         format.json { render json: GetMyFileResult.new(0,contents) }
     end
   end
+
+  GetFilePartialResult = Struct.new(:Result,:MoreChunk,:Data)
+  def getfilepartial
+    
+  	file =  open(File.join(Rails.root,"app/assets/" + params[:filename]), "rb")
+    p = params[:position].to_i
+    file.seek(p,IO::SEEK_SET)
+    contents =  file.read(1024)
+    morechunk = !file.eof
+    contents = Base64.encode64(contents)
+
+    respond_to do |format|
+        format.json { render json: GetFilePartialResult.new(0,morechunk,contents) }
+    end
+  	
+  end
+
 end
