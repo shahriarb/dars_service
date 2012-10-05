@@ -1,10 +1,13 @@
 DarsService::Application.routes.draw do
   resources :users
-
   resources :courses
+  resources :file_handler, :only => [:new] 
+  
 
   match '/register', to: 'users#register'
   match '/confirmregistrationcode', to: 'users#confirmregistrationcode' 
+
+  match '/getmyfile', to: 'file_handler#getmyfile'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
