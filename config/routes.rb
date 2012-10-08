@@ -10,10 +10,12 @@ DarsService::Application.routes.draw do
   match '/getmyfile', to: 'file_handler#getmyfile'
   match '/getfilepartial', to: 'file_handler#getfilepartial'
 
+  match '/DownloadCourse', to: 'file_handler#DownloadCourse' 
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
-  # Sample of regular route:
+  # Sample of regular DownloadCoursee:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
 

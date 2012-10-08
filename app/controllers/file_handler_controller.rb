@@ -31,4 +31,20 @@ class FileHandlerController < ApplicationController
   	
   end
 
+  GetFilePartialResult = Struct.new(:Result,:MoreChunk,:Data)
+  def DownloadCourse
+
+    file =  open(File.join(Rails.root,"app/assets/" + params[:courseid]+".zip"), "rb")
+    p = params[:position].to_i
+    file.seek(p,IO::SEEK_SET)
+    contents =  file.read(1024)
+    morechunk = !file.eof
+    contents = Base64.encode64(contents)
+
+    respond_to do |format|
+        format.json { render json: GetFilePartialResult.new(0,morechunk,contents) }
+    end
+
+  end
+
 end
