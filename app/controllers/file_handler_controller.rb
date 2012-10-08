@@ -37,7 +37,7 @@ class FileHandlerController < ApplicationController
     file =  open(File.join(Rails.root,"app/assets/" + params[:courseid]+".zip"), "rb")
     p = params[:position].to_i
     file.seek(p,IO::SEEK_SET)
-    contents =  file.read(1024)
+    contents =  file.read(10240)
     morechunk = !file.eof
     contents = Base64.encode64(contents)
 
