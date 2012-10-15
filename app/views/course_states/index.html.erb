@@ -1,0 +1,31 @@
+<h1>Listing course_states</h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>State</th>
+    <th>User</th>
+    <th>Course</th>
+    <th>State Saved Time</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @course_states.each do |course_state| %>
+  <tr>
+    <td><%= course_state.id %></td>
+    <td><%= course_state.state %></td>
+    <td><%= course_state.user_id %></td>
+    <td><%= course_state.course_id %></td>
+    <td><%= course_state.state_saved_time %></td>
+    <td><%= link_to 'Show', course_state %></td>
+    <td><%= link_to 'Edit', edit_course_state_path(course_state) %></td>
+    <td><%= link_to 'Destroy', course_state, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Course state', new_course_state_path %>

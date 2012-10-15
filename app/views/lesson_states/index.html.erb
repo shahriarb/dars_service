@@ -1,0 +1,27 @@
+<h1>Listing lesson_states</h1>
+
+<table>
+  <tr>
+    <th>State</th>
+    <th>Course state</th>
+    <th>LessonId</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @lesson_states.each do |lesson_state| %>
+  <tr>
+    <td><%= lesson_state.state %></td>
+    <td><%= lesson_state.course_state_id %></td>
+    <td><%= lesson_state.lesson_id %></td>
+    <td><%= link_to 'Show', lesson_state %></td>
+    <td><%= link_to 'Edit', edit_lesson_state_path(lesson_state) %></td>
+    <td><%= link_to 'Destroy', lesson_state, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Lesson state', new_lesson_state_path %>

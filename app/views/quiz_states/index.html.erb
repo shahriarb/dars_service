@@ -1,0 +1,27 @@
+<h1>Listing quiz_states</h1>
+
+<table>
+  <tr>
+    <th>State</th>
+    <th>Course state</th>
+    <th>QuizId</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @quiz_states.each do |quiz_state| %>
+  <tr>
+    <td><%= quiz_state.state %></td>
+    <td><%= quiz_state.course_state_id %></td>
+    <td><%= quiz_state.quiz_id %></td>
+    <td><%= link_to 'Show', quiz_state %></td>
+    <td><%= link_to 'Edit', edit_quiz_state_path(quiz_state) %></td>
+    <td><%= link_to 'Destroy', quiz_state, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Quiz state', new_quiz_state_path %>

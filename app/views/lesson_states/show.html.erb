@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>State:</b>
+  <%= @lesson_state.state %>
+</p>
+
+<p>
+  <b>Course state:</b>
+  <%= @lesson_state.course_state_id %>
+</p>
+
+<p>
+  <b>LessonId:</b>
+  <%= @lesson_state.lesson_id %>
+</p>
+
+<%= link_to 'Edit', edit_lesson_state_path(@lesson_state) %> |
+<%= link_to 'Back', lesson_states_path %>

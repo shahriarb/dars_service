@@ -1,4 +1,10 @@
 DarsService::Application.routes.draw do
+  resources :quiz_states
+
+  resources :lesson_states
+
+  resources :course_states
+
   resources :users
   resources :courses
   resources :file_handler, :only => [:new] 
@@ -12,6 +18,8 @@ DarsService::Application.routes.draw do
 
   match '/DownloadCourse', to: 'file_handler#DownloadCourse' 
 
+  match '/GetStudentStateByCourse', to: 'course_states#getstudentstatebycourse'
+  match '/SetStudentStateByCourse', to: 'course_states#setstudentstatebycourse'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
