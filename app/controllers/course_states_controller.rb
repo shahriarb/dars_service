@@ -83,13 +83,19 @@ class CourseStatesController < ApplicationController
     end
   end
 
+  GetStudentStateByCourseResult = Struct.new(:Result,:CourseState)
   def getstudentstatebycourse
     @user = User.find_by_email(params[:email])
     @course_states = CourseState.where("course_id = ? AND user_id = ?", params[:course_id],@user.id )
     @course_state = @course_states.first 
 
     respond_to do |format|
-      format.json { render json:  @course_state.to_json(:include => [:lesson_states,:quiz_states]) }
+      if @course_state
+        #format.json { render json: GetStudentStateByCourseResult.new(0,@course_state.to_json(:include => [:lesson_states,:quiz_states]))  }
+        format.json { render json: GetStudentStateByCourseResult.new(0,@course_state.as_json(:include => [:lesson_states,:quiz_states]))  }
+      else
+        format.json { render json: GetStudentStateByCourseResult.new(1,"")  }
+      end  
     end
   end  
 
