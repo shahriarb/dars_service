@@ -111,15 +111,20 @@ class CourseStatesController < ApplicationController
     course_state = CourseState.new(course_id: params[:course_id], state: parsed_json["state"],user_id: @user.id,state_saved_time: Time.now)
     course_state.save
 
-    parsed_json['lesson_states'].each do |les|
-      lessonstate = LessonState.new(course_state_id: course_state.id, lesson_id: les['lesson_id'], state: les['state'])
-      lessonstate.save
+    if parsed_json['lesson_states'] 
+      parsed_json['lesson_states'].each do |les|
+        lessonstate = LessonState.new(course_state_id: course_state.id, lesson_id: les['lesson_id'], state: les['state'])
+        lessonstate.save
+      end
+    end 
+    
+    if parsed_json['quiz_states'] 
+      parsed_json['quiz_states'].each do |qiz|
+        quizstate = QuizState.new(course_state_id: course_state.id, quiz_id: qiz['quiz_id'], state: qiz['state'])
+        quizstate.save
+      end
     end
-    parsed_json['quiz_states'].each do |qiz|
-      quizstate = QuizState.new(course_state_id: course_state.id, quiz_id: qiz['quiz_id'], state: qiz['state'])
-      quizstate.save
-    end
-
+      
     respond_to do |format|
         format.json { render json: SetStudentStateByCourseResult.new(0), status: :created }
     end
