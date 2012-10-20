@@ -20,6 +20,8 @@ DarsService::Application.routes.draw do
 
   match '/GetStudentStateByCourse', to: 'course_states#getstudentstatebycourse'
   match '/SetStudentStateByCourse', to: 'course_states#setstudentstatebycourse'
+
+  match 'RequestCertificateForStudentByCourse', to: 'courses#requestcertificateforstudentbycourse' 
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

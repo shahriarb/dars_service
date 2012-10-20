@@ -80,4 +80,13 @@ class CoursesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  RequestCertificateForStudentByCourseResult = Struct.new(:Result)
+  def requestcertificateforstudentbycourse
+    respond_to do |format|
+        format.json { render json: RequestCertificateForStudentByCourseResult.new(0), status: :created }
+    end
+
+  end  
+
 end
