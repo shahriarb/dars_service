@@ -17,6 +17,7 @@ DarsService::Application.routes.draw do
   match '/getfilepartial', to: 'file_handler#getfilepartial'
 
   match '/DownloadCourse', to: 'file_handler#DownloadCourse' 
+  match '/DownloadCourseStream', to: 'file_handler#DownloadCourseStream'
 
   match '/GetStudentStateByCourse', to: 'course_states#getstudentstatebycourse'
   match '/SetStudentStateByCourse', to: 'course_states#setstudentstatebycourse'

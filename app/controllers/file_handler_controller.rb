@@ -47,4 +47,9 @@ class FileHandlerController < ApplicationController
 
   end
 
+  def DownloadCourseStream
+    send_file(File.join(Rails.root,"app/assets/" + params[:courseid]+".zip"),
+     :filename => "#{params[:courseid]}.zip", :type => "application/zip")
+  end
+
 end
